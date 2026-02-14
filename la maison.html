@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Maison — Fine Dining Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #0a0a0a;
+            color: #e0d5c1;
+        }
+
+        /* ========== NAVBAR ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #d4af37;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #e0d5c1;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            color: #d4af37;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c9b99a;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 16px 50px;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 14px;
+            transition: all 0.4s ease;
+        }
+
+        .hero-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        /* ========== SECTION STYLES ========== */
+        section {
+            padding: 100px 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8a7e6b;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #d4af37;
+            margin: 15px auto 20px;
+        }
+
+        /* ========== FOOD GALLERY ========== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 320px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+        }
+
+        .gallery-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #d4af37;
+        }
+
+        .gallery-overlay p {
+            font-size: 13px;
+            color: #c9b99a;
+        }
+
+        /* ========== MENU SECTION ========== */
+        .menu-section {
+            background: #111;
+        }
+
+        .menu-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Nested List Styling */
+        .menu-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-category {
+            margin-bottom: 50px;
+        }
+
+        .menu-category > h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #d4af37;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+
+        /* Nested sub-list */
+        .menu-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .menu-category ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.08);
+        }
+
+        .menu-category ul li:last-child {
+            border-bottom: none;
+        }
+
+        .dish-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #e0d5c1;
+            margin-bottom: 4px;
+        }
+
+        .dish-info p {
+            font-size: 13px;
+            color: #8a7e6b;
+            font-style: italic;
+        }
+
+        .dish-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #d4af37;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* Nested sub-categories inside a category */
+        .sub-category {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .sub-category h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #c9b99a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .sub-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sub-category ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+        }
+
+        /* ========== RESERVATION SECTION ========== */
+        .reservation {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+                        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600') center/cover no-repeat;
+            text-align: center;
+            padding: 120px 60px;
+        }
+
+        .reservation h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .reservation p {
+            font-size: 16px;
+            color: #c9b99a;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .reserve-btn {
+            display: inline-block;
+            padding: 18px 55px;
+            background: #d4af37;
+            color: #0a0a0a;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+        }
+
+        .reserve-btn:hover {
+            background: #c9a020;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        footer p {
+            color: #5a5247;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        footer .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav>
+        <div class="logo">LA MAISON</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reservation">Reservation</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+        <h1>LA MAISON</h1>
+        <p>An Exquisite Culinary Experience</p>
+        <a href="#reservation" class="hero-btn">Reserve a Table</a>
+    </section>
+
+    <!-- ========== FOOD GALLERY ========== -->
+    <section id="gallery">
+        <h2 class="section-title">Our Creations</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Crafted with passion, served with elegance</p>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="Fresh Garden Salad">
+                <div class="gallery-overlay">
+                    <h3>Garden Fresh Salad</h3>
+                    <p>Organic greens &amp; vinaigrette</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Artisan Pizza">
+                <div class="gallery-overlay">
+                    <h3>Artisan Wood-Fired Pizza</h3>
+                    <p>Hand-tossed &amp; stone baked</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600" alt="Gourmet Breakfast">
+                <div class="gallery-overlay">
+                    <h3>Gourmet Breakfast Plate</h3>
+                    <p>Farm-to-table ingredients</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600" alt="Pancakes">
+                <div class="gallery-overlay">
+                    <h3>Fluffy Pancakes</h3>
+                    <p>Maple syrup &amp; fresh berries</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600" alt="Vegetable Bowl">
+                <div class="gallery-overlay">
+                    <h3>Harvest Veggie Bowl</h3>
+                    <p>Seasonal vegetables &amp; quinoa</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600" alt="Chocolate Dessert">
+                <div class="gallery-overlay">
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>Molten center &amp; vanilla gelato</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MENU with NESTED LISTS ========== -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">A journey through flavors</p>
+
+        <div class="menu-container">
+
+            <!-- ===== NESTED LIST: Starters ===== -->
+            <ol class="menu-list">
+                <li class="menu-category">
+                    <h3>🥗 Starters</h3>
+                    <ul>
+                        <li>
+                            <div class="dish-info">
+                                <h4>Bruschetta Trio</h4>
+                                <p>Tomato basil, mushroom truffle, smoked salmon</p>
+                            </div>
+                            <span class="dish-price">₹450</span>
+                        </li>
+                        <li>
+                            <div class="dish-info">
+                                <h4>French Onion Soup</h4>
+                                <p>Caramelized onions, gruyère cheese, crusty bread</p>
+                            </div>
+                            <span class="dish-price">₹380</span>
+                        </li>
+                        <li>
+                            <div class="dish-info">
+                                <h4>Paneer Tikka Platter</h4>
+                                <p>Tandoor-grilled cottage cheese with mint chutney</p>
+                            </div>
+                            <span class="dish-price">₹420</span>
+                        </li>
+                    </ul>
+
+                    <!-- Nested sub-category inside Starters -->
+                    <div class="sub-category">
+                        <h4>🍜 Soups</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Tom Yum Soup</h4>
+                                    <p>Spicy Thai broth with lemongrass &amp; galangal</p>
+                                </div>
+                                <span class="dish-price">₹350</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Cream of Mushroom</h4>
+                                    <p>Wild mushrooms, truffle oil, herb croutons</p>
+                                </div>
+                                <span class="dish-price">₹320</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- ===== NESTED LIST: Main Course ===== -->
+                <li class="menu-category">
+                    <h3>🍽️ Main Course</h3>
+
+                    <!-- Sub-category: Non-Veg -->
+                    <div class="sub-category">
+                        <h4>🍗 Non-Vegetarian</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Grilled Atlantic Salmon</h4>
+                                    <p>Lemon butter sauce, asparagus, roasted potatoes</p>
+                                </div>
+                                <span class="dish-price">₹1,250</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Butter Chicken</h4>
+                                    <p>Creamy tomato gravy, tender tandoori chicken</p>
+                                </div>
+                                <span class="dish-price">₹650</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Lamb Shank Rogan Josh</h4>
+                                    <p>Slow-braised lamb, Kashmiri spices, saffron rice</p>
+                                </div>
+                                <span class="dish-price">₹950</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub-category: Veg -->
+                    <div class="sub-category">
+                        <h4>🥦 Vegetarian</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Truffle Risotto</h4>
+                                    <p>Arborio rice, black truffle, parmesan, wild mushrooms</p>
+                                </div>
+                                <span class="dish-price">₹780</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Palak Paneer</h4>
+                                    <p>Creamy spinach curry with fresh cottage cheese</p>
+                                </div>
+                                <span class="dish-price">₹520</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Mushroom Wellington</h4>
+                                    <p>Puff pastry, duxelles, roasted vegetables</p>
+                                </div>
+                                <span class="dish-price">₹850</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- ===== NESTED LIST: Desserts ===== -->
+                <li class="menu-category">
+                    <h3>🍰 Desserts</h3>
+                    <ul>
+                        <li>
+                            <div class="dish-info">
+                                <h4>Chocolate Lava Cake</h4>
+                                <p>Molten Belgian chocolate, vanilla bean ice cream</p>
+                            </div>
+                            <span class="dish-price">₹480</span>
+                        </li>
+                        <li>
+                            <div class="dish-info">
+                                <h4>Crème Brûlée</h4>
+                                <p>Classic French custard, caramelized sugar crust</p>
+                            </div>
+                            <span class="dish-price">₹420</span>
+                        </li>
+                        <li>
+                            <div class="dish-info">
+                                <h4>Gulab Jamun</h4>
+                                <p>Rose-flavored syrup, saffron, crushed pistachios</p>
+                            </div>
+                            <span class="dish-price">₹280</span>
+                        </li>
+                    </ul>
+
+                    <!-- Nested sub-category inside Desserts -->
+                    <div class="sub-category">
+                        <h4>🍨 Ice Cream &amp; Sorbets</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Artisan Gelato (3 Scoops)</h4>
+                                    <p>Pistachio, dark chocolate, salted caramel</p>
+                                </div>
+                                <span class="dish-price">₹350</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Mango Sorbet</h4>
+                                    <p>Fresh Alphonso mango, lime zest</p>
+                                </div>
+                                <span class="dish-price">₹250</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- ===== NESTED LIST: Beverages ===== -->
+                <li class="menu-category">
+                    <h3>🥂 Beverages</h3>
+
+                    <div class="sub-category">
+                        <h4>☕ Hot Beverages</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Espresso</h4>
+                                    <p>Single origin, freshly roasted beans</p>
+                                </div>
+                                <span class="dish-price">₹180</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Masala Chai</h4>
+                                    <p>Assam tea, cardamom, ginger, cinnamon</p>
+                                </div>
+                                <span class="dish-price">₹120</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-category">
+                        <h4>🧃 Cold Beverages</h4>
+                        <ul>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Virgin Mojito</h4>
+                                    <p>Fresh mint, lime, soda, crushed ice</p>
+                                </div>
+                                <span class="dish-price">₹250</span>
+                            </li>
+                            <li>
+                                <div class="dish-info">
+                                    <h4>Fresh Fruit Smoothie</h4>
+                                    <p>Seasonal fruits, yogurt, honey</p>
+                                </div>
+                                <span class="dish-price">₹280</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+        </div>
+    </section>
+
+    <!-- ========== RESERVATION SECTION ========== -->
+    <section class="reservation" id="reservation">
+        <h2>Reserve Your Table</h2>
+        <div class="divider"></div>
+        <p>Experience culinary excellence in an unforgettable ambiance. 
+           Book your table now and let us create a memorable evening for you.</p>
+        <a href="https://www.opentable.com" target="_blank" class="reserve-btn">Book Now →</a>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <p class="footer-logo">LA MAISON</p>
+        <p>123 Connaught Place, New Delhi — Open Daily 12 PM – 11 PM</p>
+        <p style="margin-top: 8px;">&copy; 2026 La Maison. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
