@@ -1,0 +1,43 @@
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(
+        135deg,
+        #000000,
+        #0f2027,
+        #00c6ff
+    );
+    min-height:100vh;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:white;
+    margin-bottom:40px;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:20px;
+    color:white;
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h2{
+    color:#00e5ff;
+}
