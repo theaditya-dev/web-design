@@ -1,0 +1,46 @@
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#4facfe,#00f2fe,#7f7fd5);
+}
+
+.glass-nav,
+.glass-footer{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,0.3);
+}
+
+.glass-card{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:25px;
+    overflow:hidden;
+    transition:0.4s;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+.glass-card:hover{
+    transform:translateY(-10px);
+}
+
+.card-img-top{
+    object-fit:contain;
+}
+
+.nav-link{
+    transition:0.3s;
+}
+
+.nav-link:hover{
+    color:#ffd700 !important;
+}
+
+.btn{
+    border-radius:20px;
+}
+
+.modal-content{
+    border-radius:20px;
+}
