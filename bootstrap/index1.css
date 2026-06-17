@@ -1,0 +1,21 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.product-img {
+    height: 220px;
+    object-fit: contain;
+    padding: 10px;
+}
+
+footer {
+    margin-top: 50px;
+}

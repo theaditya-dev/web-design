@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">TechStore</a>
+
+            <button class="navbar-toggler"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Products -->
+    <main class="container my-5">
+
+        <div class="row g-4">
+
+            <!-- Laptop -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+
+                    <img src="https://img.freepik.com/free-photo/laptop-with-sun-background_1232-429.jpg?semt=ais_hybrid&w=740&q=80"
+                        class="card-img-top product-img"
+                        alt="Laptop">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Laptop</h5>
+
+                        <p class="card-text">
+                            High performance laptop
+                        </p>
+
+                        <h6>
+                            ₹50,000
+                            <span class="badge bg-success">
+                                New
+                            </span>
+                        </h6>
+
+                        <button class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#laptopModal">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+
+                    <img src="https://darlingretail.com/cdn/shop/files/iPhone_15_Pink_Pure_Back_iPhone_15_Pink_Pure_Front_2up_Screen__WWEN_cfd96ace-df87-4ab3-a96a-e8e9b13bb7b9_800x.jpg?v=1695104022"
+                        class="card-img-top product-img"
+                        alt="Mobile">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Mobile</h5>
+
+                        <p class="card-text">
+                            Latest smartphone
+                        </p>
+
+                        <h6>
+                            ₹30,000
+                            <span class="badge bg-danger">
+                                Sale
+                            </span>
+                        </h6>
+
+                        <button class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#mobileModal">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Headphones -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTndMcJW71HLgi9ntgoterJiJJjLxbtOVVpyA&s"
+                        class="card-img-top product-img"
+                        alt="Headphones">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Headphones</h5>
+
+                        <p class="card-text">
+                            Noise Cancelling
+                        </p>
+
+                        <h6>
+                            ₹5,000
+                            <span class="badge bg-success">
+                                New
+                            </span>
+                        </h6>
+
+                        <button class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#headphoneModal">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Laptop Modal -->
+    <div class="modal fade" id="laptopModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Laptop Details
+                    </h5>
+
+                    <button class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    16GB RAM, SSD Storage, Fast Performance
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Modal -->
+    <div class="modal fade" id="mobileModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Mobile Details
+                    </h5>
+
+                    <button class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    High Camera Quality Smartphone
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Headphone Modal -->
+    <div class="modal fade" id="headphoneModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Headphone Details
+                    </h5>
+
+                    <button class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    Best Sound Quality with Deep Bass
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        © 2026 TechStore | Follow us on Social Media
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
