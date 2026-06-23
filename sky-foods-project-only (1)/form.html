@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Foods - Log In / Sign Up</title>
+  <link rel="stylesheet" href="st.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="form-body">
+  
+  <div class="form-card">
+    <div class="form-logo" onclick="window.location.href='index.html'">
+      <p class="logo">SKY FOODS</p>
+    </div>
+    
+    <!-- Toast notifications container -->
+    <div id="toast-container" class="toast-container" style="position: absolute; top: 1.5rem; right: 1.5rem; bottom: auto; left: auto; max-width: 300px;"></div>
+
+    <!-- Login Mode Container -->
+    <div id="login-container">
+      <h1 class="form-title">Welcome Back</h1>
+      <p class="form-subtitle">Log in to your Sky Foods account</p>
+      
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <div class="input-container">
+            <span class="input-icon">✉</span>
+            <input type="email" id="login-email" class="form-input" placeholder="name@domain.com" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="input-container">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+            <span class="password-toggle" onclick="togglePasswordVisibility('login-password')">👁️</span>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <label class="remember-me">
+            <input type="checkbox" id="remember-me">
+            Remember me
+          </label>
+          <a href="#" class="forgot-password" onclick="showFeatureNotImplemented('Forgot Password')">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" class="form-submit-btn">Log In</button>
+        
+        <p class="form-switch-prompt">
+          Don't have an account? <a href="#" onclick="toggleFormMode('signup')">Sign Up</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- Signup Mode Container -->
+    <div id="signup-container" style="display: none;">
+      <h1 class="form-title">Create Account</h1>
+      <p class="form-subtitle">Get started with a free account today</p>
+      
+      <form id="signup-form" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label class="form-label" for="signup-name">Full Name</label>
+          <div class="input-container">
+            <span class="input-icon">👤</span>
+            <input type="text" id="signup-name" class="form-input" placeholder="John Doe" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email Address</label>
+          <div class="input-container">
+            <span class="input-icon">✉</span>
+            <input type="email" id="signup-email" class="form-input" placeholder="name@domain.com" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password</label>
+          <div class="input-container">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="signup-password" class="form-input" placeholder="Minimum 6 characters" minlength="6" required>
+            <span class="password-toggle" onclick="togglePasswordVisibility('signup-password')">👁️</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-confirm-password">Confirm Password</label>
+          <div class="input-container">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="signup-confirm-password" class="form-input" placeholder="Repeat your password" required>
+          </div>
+        </div>
+        
+        <div class="form-actions" style="margin-bottom: 1.5rem;">
+          <label class="remember-me" style="font-size: 0.8rem;">
+            <input type="checkbox" id="terms-agree" required>
+            I agree to the Terms & Conditions
+          </label>
+        </div>
+        
+        <button type="submit" class="form-submit-btn">Create Account</button>
+        
+        <p class="form-switch-prompt">
+          Already have an account? <a href="#" onclick="toggleFormMode('login')">Log In</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Toggle Password Visibility
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
+      }
+    }
+
+    // Toggle between login and signup modes
+    function toggleFormMode(mode) {
+      const loginContainer = document.getElementById('login-container');
+      const signupContainer = document.getElementById('signup-container');
+      
+      if (mode === 'signup') {
+        loginContainer.style.display = 'none';
+        signupContainer.style.display = 'block';
+      } else {
+        loginContainer.style.display = 'block';
+        signupContainer.style.display = 'none';
+      }
+    }
+
+    // Toast notifications helper
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      
+      let icon = 'ℹ️';
+      if (type === 'success') icon = '✅';
+      if (type === 'error') icon = '❌';
+      
+      toast.innerHTML = `
+        <span>${icon}</span>
+        <div>${message}</div>
+        <span class="toast-close" onclick="this.parentElement.remove()">×</span>
+      `;
+      
+      container.appendChild(toast);
+      
+      // Auto dismiss after 4 seconds
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(20px)';
+        toast.style.transition = 'all 0.5s ease';
+        setTimeout(() => toast.remove(), 500);
+      }, 4000);
+    }
+
+    function showFeatureNotImplemented(feature) {
+      showToast(`${feature} feature simulation! Use any credentials or register to test.`, 'info');
+    }
+
+    // Handle Login submission
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      // Basic credentials check in local storage
+      const users = JSON.parse(localStorage.getItem('sky_foods_users') || '[]');
+      const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+      // Check if user exists and password matches
+      if (user && user.password === password) {
+        showToast('Login successful! Redirecting...', 'success');
+        
+        // Save current user session
+        localStorage.setItem('sky_foods_session', JSON.stringify({
+          name: user.name,
+          email: user.email
+        }));
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      } else {
+        // Fallback for default testing account so user doesn't strictly have to register
+        if (email.toLowerCase() === 'admin@skyfoods.com' && password === 'admin123') {
+          showToast('Login successful with test account!', 'success');
+          localStorage.setItem('sky_foods_session', JSON.stringify({
+            name: 'Sky Admin',
+            email: 'admin@skyfoods.com'
+          }));
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        } else {
+          showToast('Invalid email or password. Try admin@skyfoods.com / admin123 or register.', 'error');
+        }
+      }
+    }
+
+    // Handle Registration / Signup submission
+    function handleSignup(e) {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+      if (password !== confirmPassword) {
+        showToast('Passwords do not match.', 'error');
+        return;
+      }
+
+      // Check if user already exists
+      const users = JSON.parse(localStorage.getItem('sky_foods_users') || '[]');
+      const userExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+
+      if (userExists) {
+        showToast('Account with this email already exists.', 'error');
+        return;
+      }
+
+      // Register user
+      users.push({ name, email, password });
+      localStorage.setItem('sky_foods_users', JSON.stringify(users));
+
+      showToast('Registration successful! Logging you in...', 'success');
+
+      // Auto log-in on successful signup
+      localStorage.setItem('sky_foods_session', JSON.stringify({ name, email }));
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+
+    // Pre-populate if query parameter specifies signup mode
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('mode') === 'signup') {
+        toggleFormMode('signup');
+      }
+      
+      // Seed default admin user in localStorage if not exists
+      const users = JSON.parse(localStorage.getItem('sky_foods_users') || '[]');
+      if (!users.some(u => u.email === 'admin@skyfoods.com')) {
+        users.push({
+          name: 'Sky Admin',
+          email: 'admin@skyfoods.com',
+          password: 'admin123'
+        });
+        localStorage.setItem('sky_foods_users', JSON.stringify(users));
+      }
+    });
+  </script>
+</body>
+</html>

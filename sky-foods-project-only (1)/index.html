@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Foods - Order Premium Food Online</title>
+  <link rel="stylesheet" href="st.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <p class="logo" onclick="window.location.href='index.html'">SKY FOODS</p>
+    <nav class="nav" id="header-nav">
+      <!-- Dynamic navigation loaded by JS -->
+      <a href="form.html" class="login-nav-btn">Log In</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#about">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">SKY FOODS</h1>
+      <p class="hero-subtitle">Discover the best food & drinks near you</p>
+    </div>
+    <div class="hero-img-container">
+      <img src="food.png" alt="Delicious food" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'">
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-input-wrapper">
+      <span class="search-icon">🔍</span>
+      <input id="search" type="text" placeholder="Search for restaurant, cuisine or dish...">
+    </div>
+    <select name="location">
+      <option value="" selected>Select location (All)</option>
+      <option value="nakhas">Nakhas</option>
+      <option value="jaycis">Jaycis</option>
+      <option value="ruhatta">Ruhatta</option>
+      <option value="kachahari">Kachahari</option>
+      <option value="sipah">Sipah</option>
+    </select>
+    <button type="button">Search</button>
+  </div>
+
+  <!-- Menu / Restaurants Section -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Our Culinary Collection</h2>
+        <p class="section-subtitle">Select dishes from verified restaurants near you</p>
+      </div>
+      <div class="category-tabs" id="category-tabs">
+        <!-- Dynamically loaded category tabs -->
+      </div>
+    </div>
+    <div class="restaurant-grid" id="restaurant-grid">
+      <!-- Dynamically loaded dish cards -->
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="about">
+    <h2 class="features-title">Why Choose Sky Foods?</h2>
+    <p class="features-subtitle">We bridge the gap between food cravings and top-rated local culinary masterpieces.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">WS</div>
+        <h3>Wide Selection</h3>
+        <p>Choose from thousands of restaurants and cuisines available in your area</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">FD</div>
+        <h3>Fast Delivery</h3>
+        <p>Get your food delivered hot and fresh right to your doorstep in minutes</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">EP</div>
+        <h3>Easy Payment</h3>
+        <p>Multiple payment options including cards, wallets, and cash on delivery</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">BR</div>
+        <h3>Best Ratings</h3>
+        <p>Verified reviews and ratings to help you make the best choice every time</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">GO</div>
+        <h3>Great Offers</h3>
+        <p>Exclusive deals and discounts on your favorite restaurants and dishes</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">24/7</div>
+        <h3>24/7 Support</h3>
+        <p>Our customer support team is always here to help you with any queries</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Description Section -->
+  <section class="description-section">
+    <div class="description-container">
+      <span class="description-badge">Sky Foods Experience</span>
+      <p class="description">
+        Sky Foods is your ultimate food delivery and restaurant discovery platform, connecting you with 
+        the best culinary experiences in your city. Founded with a passion for great food and customer 
+        satisfaction, we partner with thousands of restaurants to bring you a diverse range of cuisines 
+        right to your doorstep. From quick bites to gourmet meals, table reservations to home delivery, 
+        we make every dining experience memorable and convenient.
+      </p>
+    </div>
+  </section>
+
+  
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h2><span>🛒</span> Your Cart</h2>
+      <button class="close-cart" onclick="toggleCartDrawer(false)">×</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <!-- Items dynamically populated by JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total-price" class="cart-total-price">₹0</span>
+      </div>
+      <button id="checkout-btn" class="checkout-btn" onclick="handleCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h2>ABOUT SKY FOODS</h2>
+        <div>Who we are</div>
+        <div>Blog</div>
+        <div>Work with us</div>
+        <div>Investor relations</div>
+        <div>Report fraud</div>
+        <div>Press kit</div>
+        <div>Contact us</div>
+      </div>
+
+      <div class="footer-section">
+        <h2>FOR RESTAURANTS</h2>
+        <div>Partner with us</div>
+        <div>Apps for you</div>
+        <div>Restaurant dashboard</div>
+        <div>Business tools</div>
+      </div>
+
+      <div class="footer-section">
+        <h2>FOR CUSTOMERS</h2>
+        <div>Order food online</div>
+        <div>Table reservation</div>
+        <div>Gift cards</div>
+        <div>Membership</div>
+      </div>
+
+      <div class="footer-section">
+        <h2>LEARN MORE</h2>
+        <div>Privacy</div>
+        <div>Security</div>
+        <div>Terms</div>
+        <div>Sitemap</div>
+      </div>
+
+      <div class="footer-section">
+        <h2>SOCIAL LINKS</h2>
+        <a href="https://www.youtube.com/@AkashNishad-f8r" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
+        <a href="https://www.instagram.com/sasu_ke9455/" target="_blank" rel="noopener noreferrer">Instagram Handle</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+
+    <hr>
+    <p class="footer-note">
+      By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content
+      Policies. All trademarks are properties of their respective owners. 2008-2025 © Sky Foods™ Ltd. All rights reserved.
+    </p>
+  </footer>
+
+  <script type="module" src="/sky-foods.js"></script>
+</body>
+</html>
